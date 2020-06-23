@@ -28,7 +28,7 @@
             <div class="form-group">
               <div class="row">
                 <div class="col-md-6">
-                  <input type="submit" name="Valider" class="btn btn-block bg-red" />
+                  <input type="submit" name="Valider" class="btn btn-block bg-red" onclick="valider()"/>
                 </div>
                 <div class="col-md-6">
                   <a href="index.php?action=login" class="btn btn-block bg-blue">Connexion</a>
@@ -50,6 +50,18 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+
+  function valider(){
+    const mail = document.getElementById('email')
+    const password = document.getElementById('password')
+    const verif_password = document.getElementById('password_confirm')
+
+    
+  }
+
+</script>
 
 
 <?php $content = ob_get_clean(); ?>

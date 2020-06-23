@@ -87,20 +87,27 @@ class Media {
   /***************************
   * -------- GET LIST --------
   ***************************/
+  public function filter($search){
+    $db = init_db();
 
-  public static function filterMedias( $title ) {
+    if(empty($search)){
+      $req = $db->prepare( "SELECT * FROM media" );
+    $req->execute();
+    // Close databse connection
+    $db = null;
 
-    // Open database connection
-    $db   = init_db();
-
-    $req  = $db->prepare( "SELECT * FROM media WHERE title = ? ORDER BY release_date DESC" );
-    $req->execute( array( '%' . $title . '%' ));
+    return $req->fetchALL();
+    }
+    else{
+    $req = $db->prepare( 'SELECT * FROM media WHERE title LIKE "%'.$search.'%"');
+    $req->execute();
 
     // Close databse connection
-    $db   = null;
+    $db = null;
 
-    return $req->fetchAll();
+    return $req->fetchALL();
+    }
+     
 
   }
-
 }

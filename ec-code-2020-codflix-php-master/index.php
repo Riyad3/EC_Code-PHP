@@ -40,6 +40,7 @@ else:
 
   if( $user_id ):
     mediaPage();
+    //listAll();
   else:
     homePage();
   endif;

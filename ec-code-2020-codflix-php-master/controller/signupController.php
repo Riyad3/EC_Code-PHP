@@ -22,6 +22,9 @@ function signupPage() {
 /***************************
 * ----- SIGNUP FUNCTION -----
 ***************************/
+if(isset($_POST['Valider'])){
+  registration();
+}
 function registration() {
 
   // On verifie d'abord qu'on reçoit des données via le formulaire 
