@@ -5,21 +5,11 @@ $id = $_GET['media'];
     $detail = Media::getDetail($id);
     $detailGenre = Media::getGenre($id);
 
-    echo $detailGenre['name'];
-    echo $detail['name'];
-    //var_dump($req[1]);
-    // echo $req['title'];
-    // echo $req['type'];
-    // echo $req['status'];
-    // echo $req['release_date'];
-    // echo $req['summary'];
-    // echo $req['trailer_url'];
-
 ?>
 
 <div class="row">
     <div class="col-md-4">
-        <h3><?= $detail['title']; ?></h3>
+        <h2><?= $detail['title']; ?></h2>
     </div>
     <div class="col d-flex justify-content-end">
         <div>
@@ -38,10 +28,11 @@ $id = $_GET['media'];
         <span><?= $detail['summary']?></span>
         <p></p>
     </div>
-    <div class="row video mt-4">
-        <iframe allowfullscreen="true" frameborder="0" width="100%" 
-            src="<?= $detail['trailer_url']; ?>" ></iframe>
-    </div>
+    <div class="row video mt-6">
+   
+
+<iframe width="560" height="315" src="<?= $detail['trailer_url']; ?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 
 </div>
 
@@ -49,3 +40,4 @@ $id = $_GET['media'];
 <?php $content = ob_get_clean(); ?>
 
 <?php require( 'dashboard.php'); ?>
+

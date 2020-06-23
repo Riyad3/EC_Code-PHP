@@ -18,6 +18,7 @@
 #home .banner .title span {
   color: var(--color-red);
 }
+
 #home .banner .title + p {
     color: #fff;
     text-align: center;
