@@ -31,6 +31,11 @@ if ( isset( $_GET['action'] ) ):
       logout();
 
     break;
+    case 'detail':
+
+      listOne();
+
+    break;
 
   endswitch;
 
@@ -40,7 +45,7 @@ else:
 
   if( $user_id ):
     mediaPage();
-    //listAll();
+
   else:
     homePage();
   endif;

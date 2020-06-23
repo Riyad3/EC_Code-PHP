@@ -15,3 +15,8 @@ function mediaPage() {
 
   require('view/mediaListView.php');
 }
+
+
+function listOne(){
+  require('view/details.php');
+}

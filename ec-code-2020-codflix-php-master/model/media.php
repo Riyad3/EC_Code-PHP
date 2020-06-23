@@ -87,7 +87,7 @@ class Media {
   /***************************
   * -------- GET LIST --------
   ***************************/
-  public function filter($search){
+  public function  filter($search){
     $db = init_db();
 
     if(empty($search)){
@@ -107,7 +107,24 @@ class Media {
 
     return $req->fetchALL();
     }
-     
+  }
 
+  public static function getDetail($id){
+    $db = init_db();
+    
+    $req = $db->prepare( 'SELECT * FROM media WHERE id =' .$id);
+    $req->execute();
+
+    return $req->fetch();
+  }
+  public static function getGenre($id){
+
+    $db = init_db();
+  
+    $req = $db->prepare( "SELECT * FROM genre WHERE id = " . $id );
+    $req->execute();
+
+    $db = null;
+    return $req->fetch();
   }
 }
