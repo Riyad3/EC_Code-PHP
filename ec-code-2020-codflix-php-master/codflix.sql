@@ -20,7 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `codflix`
 --
-
+CREATE DATABASE IF NOT EXISTS codflix;
+USE codflix;
 -- --------------------------------------------------------
 
 --
