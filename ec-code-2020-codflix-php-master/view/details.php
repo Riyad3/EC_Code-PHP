@@ -1,5 +1,5 @@
  
-<?php ob_start();   
+<?php ob_start();
 $id = $_GET['media'];
 
     $detail = Media::getDetail($id);
@@ -22,8 +22,10 @@ $id = $_GET['media'];
 <div class="col mt-5">
     <div class="row mt-4">
         <div class="col mt-2">
-            <span id="media_genre" class="row">Genre :<?= $detailGenre['name']?> Type : <?= $detail['type']?></span>
+            <span id="media_genre" class="row">Genre :<?= $detailGenre['name']?></span>
             <p class="row">Date de réalisation: <?= $detail['release_date']?></p>
+            <p class="row">Durée: <?= $detail['durée']?></p>
+
         </div>
         <span><?= $detail['summary']?></span>
         <p></p>
@@ -31,7 +33,7 @@ $id = $_GET['media'];
     <div class="row video mt-6">
    
 
-<iframe width="560" height="315" src="<?= $detail['trailer_url']; ?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="<?=$detail['trailer_url']; ?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
 </div>

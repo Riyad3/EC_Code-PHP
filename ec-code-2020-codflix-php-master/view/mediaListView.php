@@ -14,7 +14,8 @@
 </div>
 
 <div class="media-list" name="media">
-    <?php foreach( $medias as $media ): ?>
+    <?php 
+    foreach( $medias as $media ): ?>
         <a class="item" href="index.php?action=detail&media=<?=$media['id'];?>">
             <div class="video">
                 <div>

@@ -87,7 +87,7 @@ class Media {
   /***************************
   * -------- GET LIST --------
   ***************************/
-  public function  filter($search){
+  public static function  filter($search){
     $db = init_db();
 
     if(empty($search)){

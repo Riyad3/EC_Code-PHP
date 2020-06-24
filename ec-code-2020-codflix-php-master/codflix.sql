@@ -42,8 +42,22 @@ INSERT INTO `genre` (`id`, `name`) VALUES
 (1, 'Action'),
 (2, 'Horreur'),
 (3, 'Science-Fiction');
-
 -- --------------------------------------------------------
+
+--
+-- Table structure for table `type`
+--
+--DROP TABLE IF EXISTS `type`;
+--CREATE TABLE `type` (
+ -- id INT PRIMARY KEY NOT NULL,
+  --nom VARCHAR(100)
+--) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--INSERT INTO `type` (`id`, `name`) VALUES
+--(1, 'Film'),
+--(2, 'Serie'),
+-- --------------------------------------------------------
+
 
 --
 -- Table structure for table `media`
@@ -58,7 +72,9 @@ CREATE TABLE `media` (
   `status` varchar(20) NOT NULL,
   `release_date` date NOT NULL,
   `summary` longtext NOT NULL,
-  `trailer_url` varchar(100) NOT NULL
+  `trailer_url` varchar(100) NOT NULL,
+  `typeof` int NOT NULL
+
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
@@ -161,6 +177,7 @@ ALTER TABLE `user`
 --
 ALTER TABLE `media`
   ADD CONSTRAINT `media_genre_id_b1257088_fk_genre_id` FOREIGN KEY (`genre_id`) REFERENCES `genre` (`id`);
+  --ADD CONSTRAINT  `media_type_id_fk_type_id` FOREIGN KEY (`typeof`) REFERENCES `type` (`id`)
 
 --
 -- Constraints for table `history`
