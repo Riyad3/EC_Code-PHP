@@ -125,4 +125,47 @@ class User {
     return $req->fetch();
   }
 
+  public function updateMail() {
+
+    $db    = init_db();
+
+    $req   = $db -> prepare ( "UPDATE user SET email = :email WHERE id = :id;" );
+    $req -> execute(array(
+      'email' => $this-> getEmail(),
+      'id' => $this-> getId()
+    ));
+
+    var_dump($req);
+
+    // Fermer la connexion à la base de données
+    $db = null ;
+  }
+
+  public function updatePassword() {
+
+    $db    = init_db();
+
+    $req   = $db -> prepare ( "UPDATE user SET password = :password WHERE id = :id;" );
+    $req -> execute(array(
+      'password' => hash( 'sha256' , $this->getPassword()),
+      'id' => $this-> getId()
+    ));
+    var_dump($req);
+
+    // Fermer la connexion à la base de données
+    $db    = null ;
+  }
+
+  public function deleteUser() {
+
+    $db    = init_db();
+
+    $req   = $db -> prepare ( "DELETE FROM user WHERE id =?" );
+    $req->execute(array(
+       $this->getId()));
+
+    // Fermer la connexion à la base de données
+    $db    = null ;
+  }
+
 }

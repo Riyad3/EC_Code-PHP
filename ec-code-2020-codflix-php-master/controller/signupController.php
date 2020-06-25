@@ -34,9 +34,9 @@ function registration() {
 
   // On attribut les valeur recuperer dans le form
     if(isset($_POST['Valider'])){
-      $mail = htmlentities(strtolower($email));
-      $password = htmlentities(trim($password));
-      $conf_password = htmlentities(trim($password_confirm));
+      $mail = $_POST['email'];
+      $password = $_POST['password'];
+      $conf_password = $_POST['password_confirm'];
 
       if(empty($mail)){
         $valid = false;
@@ -58,6 +58,7 @@ function registration() {
     }
     if($valid){
       $password = hash('sha256', $password);
+      $conf_password = $password;
       $new_user = new User();
       $new_user->setEmail($mail);
       $new_user->setPassword($password);

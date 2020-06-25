@@ -49,6 +49,8 @@ $id = $_GET['media'];
         <div class="col mt-2">
             <p class="row">Date de réalisation: <?= $details['date_sortie']?></p>
             <p class="row">Durée: <?= $detail['durée']?></p>
+            <p class="row">Genre: <?= $detail['type']?></p>
+
 
         </div>
         <span><?= $details['summary']?></span>
