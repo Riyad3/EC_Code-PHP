@@ -6,7 +6,6 @@
   
   $user_data = User::getUserById($user);
   
-  //var_dump($user_data);
   $user_mail = $user_data["email"];
 
   echo $user_mail;

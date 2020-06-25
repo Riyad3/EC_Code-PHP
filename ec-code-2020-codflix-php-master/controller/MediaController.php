@@ -7,18 +7,11 @@ require_once( 'model/media.php' );
 ***************************/
 
 function mediaPage() {
-
-
   $search = isset( $_GET['title'] ) ? $_GET['title'] : null; 
   $medias = Media::filter($search);
-  
-  
   $genre = isset( $_GET['name'] ) ? $_GET['name'] : null;
   $type = Media::getGenre($genre);
   $a= 0;
-
-
-
   if(isset($_GET['typeof'])){
     $a = $_GET['typeof'];
   }
@@ -33,8 +26,6 @@ function mediaPage() {
 
   }
 }
-
-
 function listFilm($id){
   require('view/details.php');
 }
@@ -57,23 +48,3 @@ function listSerie($id){
   require('view/detailSerie.php');
 
 }
-
-/*function chooseSeason(){
-
-}
-
-
-
-
-   /* Mettre une condition qui verifie $media['typeof']
- if($media['typeof'] == 1){
-
-  faire en sorte que la redirection soit vers details
-  Mettre un sous-onglet film ? 
- } else
- faire en sorte que la redirection soit vers detailsSerie avec une format different
-
- //slect avec un where pour differencier les series des films
- caler une redirection 
- */
-

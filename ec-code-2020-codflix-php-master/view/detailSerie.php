@@ -1,29 +1,13 @@
  
 <?php ob_start();
 
-
 $detail = Media::getDetail($id);
 $id = $_GET['media'];
-$saison = $detail['saison'];
-$episode = $detail['episode'];
-$title= $detail['title'];
-//$detailGenre = Media::getGenre($type);
-  
-//$detailType = Media::getDbTypeOf($genre);
-
-/*
-faire une requete sur le nom des series qui affiche une video differente en fonction de ce qu'on l'on aura selectionné 
-attribuer nom explicite au serie " saison 1 episode 1 etc " 
-action="http://localhost:8888/EC_Code-PHP/ec-code-2020-codflix-php-master/index.php?media='<?=$idDetail;?>&typeof=2&genre='3'&saison='<?= $saison;?>'&episode=<?= $episode;?>"
-    <span id="media_genre" class="row">Genre: <?= $detail['name']?></span>
-            <p class="row">Type de média: <?= $detail['name']?></p>         
-
-*/
 ?>
 
 <div class="row">
     <div class="col-md-6">
-        <h2><?= $detail['title'];?>  saison  <?= $details['saison'];?> episode <?= $details['episode'];?></h2>
+        <h2><?= $details['title'];?>  saison  <?= $details['saison'];?> episode <?= $details['episode'];?></h2>
         <form method="get" class="custom-form">
             <input type="hidden" name="media" value="<?= $detail['id'] ?>"/>
             <input type="hidden" name="typeof" value="2"/>
