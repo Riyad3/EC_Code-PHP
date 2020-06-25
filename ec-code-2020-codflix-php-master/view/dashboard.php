@@ -20,6 +20,7 @@
           <ul>
             <li class="active"><a href="index.php">Médias</a></li>
             <li><a href="index.php?action=contact">Nous contacter</a></li>
+            <li><a href="index.php?action=profile">Profil</a></li>
             <li><a href="index.php?action=logout">Me déconnecter</a></li>
           </ul>
         </div>
@@ -43,7 +44,7 @@
       </div>
     </div>
 
-    <script src="public/lib/jquery/js/jquery-3.5.0.min"></script>
+    <script src="public/lib/jquery/js/jquery-3.5.0.min.js"></script>
     <script src="public/lib/bootstrap/js/bootstrap.min.js"></script>
 
     <script src="public/js/script.js"></script>

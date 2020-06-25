@@ -12,6 +12,10 @@ class Media {
   protected $release_date;
   protected $summary;
   protected $trailer_url;
+  protected $duree;
+  protected $typeof;
+  protected $saison;
+  protected $episode;
 
   public function __construct( $media ) {
 
@@ -47,6 +51,16 @@ class Media {
   public function setReleaseDate( $release_date ) {
     $this->release_date = $release_date;
   }
+  public function setTypeOf( $typeof ){
+    $this->typeof = $typeof;
+  }
+  public function setSaison( $saison ){
+    $this->saison = $saison;
+  }
+  public function setEpisode( $episode ){
+    $this->episode = $episode;
+  }
+
 
   /***************************
   * -------- GETTERS ---------
@@ -83,6 +97,16 @@ class Media {
   public function getTrailerUrl() {
     return $this->trailer_url;
   }
+  public function getTypeOf(){
+    return $this->typeof;
+    }
+  public function getSaison(){
+    return $this->saison;
+    }
+  public function getEpisode(){
+    return $this->episode;
+    
+  }
 
   /***************************
   * -------- GET LIST --------
@@ -112,8 +136,8 @@ class Media {
   public static function getDetail($id){
     $db = init_db();
     
-    $req = $db->prepare( 'SELECT * FROM media WHERE id =' .$id);
-    $req->execute();
+    $req = $db->prepare( 'SELECT * FROM media WHERE id = ?');
+    $req->execute(array($id));
 
     return $req->fetch();
   }
@@ -127,4 +151,92 @@ class Media {
     $db = null;
     return $req->fetch();
   }
+  public static function getDbTypeOf($id){
+
+    $db = init_db();
+  
+    $req = $db->prepare( "SELECT * FROM `typeof` WHERE id = " . $id );
+    $req->execute();
+
+    $db = null;
+    return $req->fetch();
+  }
+
+  public static function getMediaWithSaisonAndEpisode($title,$saison,$episode){
+    $db = init_db();
+  
+  
+  $req = $db->prepare( "SELECT id FROM media WHERE title = '$title' && saison = $saison && episode = $episode ");
+
+/*  $stmt = $db->prepare("SELECT * FROM media WHERE title=:title && saison=:saison &&  episode=:episode  ");
+		$stmt->execute([
+		  'title' => $title
+    ]);
+ */
+	//  $req = $db->prepare("SELECT * FROM user WHERE title = ? && saison = ? && episode = ?");
+
+    //$req->execute(array($title,$saison,$episode ));
+      
+    echo '<pre> req <br>';
+    var_dump($req);
+    echo '</pre>';
+    
+    $req->execute();
+
+    echo '<pre> req faite <br>';
+    var_dump($req->execute());
+    echo '</pre>';
+    
+    $db = null;
+    return $req->fetch();
+
+  }
+  public static function getSaisonById( $id ) {
+
+    // Open database connection
+    $db   = init_db();
+
+    $req  = $db->prepare( "SELECT DISTINCT saison FROM serie WHERE id_serie = ?" );
+    $req->execute( array( $id ));
+
+    // Close databse connection
+    $db   = null;
+
+    return $req->fetchAll();
+  }
+
+  public static function getEpisodeById( $id, $saison ) {
+
+    // Open database connection
+    $db   = init_db();
+
+    $req  = $db->prepare( "SELECT episode FROM serie WHERE id_serie = $id && saison = $saison" );
+    $req->execute( array(
+      'id_serie' => $id,
+      'saison' => $saison
+    ));
+
+    // Close databse connection
+    $db   = null;
+
+    return $req->fetchAll();
+  }
+
+  public static function getEpisodeDetails( $id, $saison,$episode){
+  $db   = init_db();
+
+  $req  = $db->prepare( "SELECT * FROM serie WHERE id_serie = $id  && saison = $saison&& episode = $episode" );
+  $req->execute( array(
+    'id_serie' => $id,
+    'saison' => $saison,
+    'episode' => $episode
+  ));
+
+  // Close databse connection
+  $db   = null;
+
+  return $req->fetch();
+}
+
+
 }

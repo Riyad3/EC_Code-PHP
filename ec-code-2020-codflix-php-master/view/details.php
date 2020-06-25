@@ -1,11 +1,17 @@
  
 <?php ob_start();
 $id = $_GET['media'];
+//$type = $_GET['genre'];
+//$genre = $_GET['typeof'];
 
     $detail = Media::getDetail($id);
-    $detailGenre = Media::getGenre($id);
-
+  /* $detailGenre = Media::getGenre($type);
+  //  $detailType = Media::getDbTypeOf($genre);
+   <span id="media_genre" class="row">Genre: <?= $detailGenre['name']?></span>
+            <p class="row">Type de média: <?= $detailType['name']?></p>
+*/
 ?>
+
 
 <div class="row">
     <div class="col-md-4">
@@ -22,7 +28,7 @@ $id = $_GET['media'];
 <div class="col mt-5">
     <div class="row mt-4">
         <div class="col mt-2">
-            <span id="media_genre" class="row">Genre :<?= $detailGenre['name']?></span>
+           
             <p class="row">Date de réalisation: <?= $detail['release_date']?></p>
             <p class="row">Durée: <?= $detail['durée']?></p>
 

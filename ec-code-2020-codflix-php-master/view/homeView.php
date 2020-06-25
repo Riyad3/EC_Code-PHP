@@ -11,10 +11,10 @@
                     </p>
                 </div>
             </div>
-                <div class="row btn-container flex-column">
-                <div class="col-md-4 mt-5"><a href="index.php?action=login" class=" btn btn-block bg-red">Connexion</a></div>
-                <div class="col-md-4 mt-5"><a href="index.php?action=signup" class="btn btn-block bg-red">Inscription</a></div>
-                <div class="col-md-4 mt-5"><a href="index.php?action=contact" class="btn btn-block bg-red">Nous contacter</a></div>
+            <div class="row btn-container flex-column">
+                <div class="col mt-5"><a href="index.php?action=login" class=" btn btn-block bg-red">Connexion</a></div>
+                <div class="col mt-5"><a href="index.php?action=signup" class="btn btn-block bg-red">Inscription</a></div>
+                <div class="col mt-5"><a href="index.php?action=contact" class="btn btn-block bg-red">Nous contacter</a></div>
             </div>
             </div>
         </div>

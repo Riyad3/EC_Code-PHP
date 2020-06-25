@@ -5,10 +5,14 @@ require_once( 'controller/loginController.php' );
 require_once( 'controller/signupController.php' );
 require_once( 'controller/mediaController.php' );
 require_once( 'controller/contactController.php' );
+require_once( 'controller/profileController.php');
 
 /**************************
 * ----- HANDLE ACTION -----
 ***************************/
+
+$user= isset( $_SESSION['user_id'] ) ? $_SESSION['user_id'] : false;
+
 
 if ( isset( $_GET['action'] ) ):
 
@@ -26,6 +30,14 @@ if ( isset( $_GET['action'] ) ):
       signupPage();
 
     break;
+    case 'profile':
+      if($user){
+        profile();
+      }else{
+        signupPage();
+      }
+
+    break;
     case 'contact':
 
       contactPage();
@@ -37,12 +49,6 @@ if ( isset( $_GET['action'] ) ):
       logout();
 
     break;
-    case 'detail':
-
-      listOne();
-
-    break;
-
   endswitch;
 
 else:

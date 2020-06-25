@@ -15,8 +15,11 @@
 
 <div class="media-list" name="media">
     <?php 
-    foreach( $medias as $media ): ?>
-        <a class="item" href="index.php?action=detail&media=<?=$media['id'];?>">
+    foreach( $medias as $media ):?>
+    <?php  echo $media['typeof'] ?>
+        <a class="item" href="index.php?media=<?=$media['id'];?>&typeof=<?= $media['typeof']; ?> ">
+        <input type="hidden" value="<?= $media['typeof']; ?>">
+
             <div class="video">
                 <div>
                     <iframe allowfullscreen="" frameborder="0"
@@ -31,3 +34,4 @@
 <?php $content = ob_get_clean(); ?>
 
 <?php require('dashboard.php'); ?>
+

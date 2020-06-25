@@ -8,10 +8,64 @@ require_once( 'model/media.php' );
 
 function mediaPage() {
 
+
   $search = isset( $_GET['title'] ) ? $_GET['title'] : null; 
   $medias = Media::filter($search);
- 
- /* Mettre une condition qui verifie $media['typeof']
+  
+  
+  $genre = isset( $_GET['name'] ) ? $_GET['name'] : null;
+  $type = Media::getGenre($genre);
+  $a= 0;
+
+
+
+  if(isset($_GET['typeof'])){
+    $a = $_GET['typeof'];
+  }
+  if(isset($_GET['media'])){
+    if($a == 1){
+      listFilm($_GET['media']);
+    }elseif ($a == 2) {
+      listSerie($_GET['media']);
+    }
+  }else{
+    require('view/mediaListView.php');
+
+  }
+}
+
+
+function listFilm($id){
+  require('view/details.php');
+}
+
+function listSerie($id){
+  $medias = Media::getDetail($_GET['media']);
+  $vid = $medias['trailer_url'];
+  $details = false;
+
+
+  $saisons = Media::getSaisonbyId($medias['id']);
+  $episodes = Media::getEpisodebyId($medias['id'] , 1);
+  if ( isset($_GET['saison']) && isset($_GET['episode'])){
+
+    $details = Media::getEpisodeDetails($_GET['media'], $_GET['saison'],$_GET['episode']);
+    if ($details){
+      $vid = $details['url'];
+    }
+  }
+  require('view/detailSerie.php');
+
+}
+
+/*function chooseSeason(){
+
+}
+
+
+
+
+   /* Mettre une condition qui verifie $media['typeof']
  if($media['typeof'] == 1){
 
   faire en sorte que la redirection soit vers details
@@ -19,13 +73,7 @@ function mediaPage() {
  } else
  faire en sorte que la redirection soit vers detailsSerie avec une format different
 
+ //slect avec un where pour differencier les series des films
+ caler une redirection 
  */
 
-
-  require('view/mediaListView.php');
-}
-
-
-function listOne(){
-  require('view/details.php');
-}
