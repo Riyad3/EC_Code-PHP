@@ -48,3 +48,19 @@ function listSerie($id){
   require('view/detailSerie.php');
 
 }
+
+function  mediaDetails () {
+
+  $user_id = isset ( $_SESSION [ 'user_id' ])? $_SESSION [ 'user_id' ]: false ;
+  Media :: addMediaToHistory ( $user_id , $_GET [ 'media' ]);
+
+  $isFavorite = Media :: getFavoriteByMedia ( $user_id , $_GET [ 'media' ]);
+
+  if ( isset ( $_GET [ 'favorite' ]) && $_GET ['favorite' ] == 'true' )
+  {
+    Media::addMediaToFavorites ( $user_id , $_GET [ 'media' ]);
+    $isFavorite =! $isFavorite ;
+  }
+
+  require_once ( 'view /mediaDetailsView.php' );
+}

@@ -28,8 +28,8 @@ function updateAccount() {
     $user_id = $_SESSION['user_id'];
     $email = $_POST['email'];
     $password = hash('sha256', $_POST['password']);
-    $new_password = $_POST['newPassword'];
-    $password_confirm = $_POST['newPasswordConfirm'];
+    $new_password = $_POST['new_password'];
+    $password_confirm = $_POST['new_password_confirm'];
 
     $user = new User();
     $userData = $user->getUserById($user_id); 
@@ -75,7 +75,7 @@ function updateAccount() {
         else
         {
             $user->setId($user_id);
-            $user->setPassword($$new_password);
+            $user->setPassword($new_password);
 
             $user->updatePassword();
             $success_msg = "Vos informations ont été modifiées avec succès.";     

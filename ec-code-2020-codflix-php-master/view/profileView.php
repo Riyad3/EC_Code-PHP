@@ -4,7 +4,7 @@
         <div class="auth-container">
           <h2><span>Cod</span>'Flix</h2>
           <h3>Mon compte</h3>
-
+          
           <form method="post" class="custom-form">
 
             <div class="row">
@@ -68,5 +68,4 @@
       </div>
 
 <?php $content = ob_get_clean(); ?>
-
-<?php require('view/base.php'); ?>
+<?php require('view/dashboard.php'); ?>

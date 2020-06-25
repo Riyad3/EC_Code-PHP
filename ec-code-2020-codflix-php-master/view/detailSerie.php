@@ -4,7 +4,6 @@
 $detail = Media::getDetail($id);
 $id = $_GET['media'];
 ?>
-
 <div class="row">
     <div class="col-md-6">
         <h2><?= $details['title'];?>  saison  <?= $details['saison'];?> episode <?= $details['episode'];?></h2>
@@ -15,7 +14,7 @@ $id = $_GET['media'];
 
             <div class="mt-3">
                 <label for="saison">Saison :</label>
-                <select name="saison" id="saison">
+                <select name="saison" id="saison"class="form-control">
                     <?php foreach( $saisons as $saison ): ?>
                         <option value="<?= $saison['saison']; ?>"> <?= $saison['saison']; ?> </option>
                     <?php endforeach; ?>
@@ -24,7 +23,7 @@ $id = $_GET['media'];
 
             <div>
                 <label for="episode">Episode :</label>
-                <select name="episode" id="episode">
+                <select name="episode" id="episode" class="form-control">
                     <?php foreach( $episodes as $episode ): ?>
                         <option value="<?= $episode['episode']; ?>"> <?= $episode['episode']; ?> </option>
                     <?php endforeach; ?>

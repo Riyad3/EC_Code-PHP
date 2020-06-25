@@ -165,28 +165,8 @@ class Media {
   public static function getMediaWithSaisonAndEpisode($title,$saison,$episode){
     $db = init_db();
   
-  
-  $req = $db->prepare( "SELECT id FROM media WHERE title = '$title' && saison = $saison && episode = $episode ");
-
-/*  $stmt = $db->prepare("SELECT * FROM media WHERE title=:title && saison=:saison &&  episode=:episode  ");
-		$stmt->execute([
-		  'title' => $title
-    ]);
- */
-	//  $req = $db->prepare("SELECT * FROM user WHERE title = ? && saison = ? && episode = ?");
-
-    //$req->execute(array($title,$saison,$episode ));
-      
-    echo '<pre> req <br>';
-    var_dump($req);
-    echo '</pre>';
-    
-    $req->execute();
-
-    echo '<pre> req faite <br>';
-    var_dump($req->execute());
-    echo '</pre>';
-    
+  $req = $db->prepare( "SELECT id FROM media WHERE title = '$title' && saison = $saison && episode = $episode ");    
+   $req->execute();
     $db = null;
     return $req->fetch();
 
@@ -237,6 +217,78 @@ class Media {
 
   return $req->fetch();
 }
+public static function getAllFavorites($user_id){
+  // Open database connection
+  $db   = init_db();
 
+  $req = $db->prepare("SELECT * FROM favorites WHERE user_id = ? ORDER BY id DESC");
+  $req->execute( array($user_id ));
+
+  // Close databse connection
+  $db   = null;
+
+  return $req->fetchAll();
+}
+
+public static function getFavoriteByMedia($user_id, $media_id){
+  // Open database connection
+  $db   = init_db();
+
+  $req = $db->prepare("SELECT * FROM favorites WHERE user_id = :user_id AND media_id = :media_id");
+  $req->execute( array( 
+    'user_id' => $user_id,
+    'media_id' => $media_id
+  ));
+
+  // Close databse connection
+  $db   = null;
+
+  return $req->fetch();
+}
+
+public static function addMediaToFavorites($user_id, $media_id){
+  // Open database connection
+  $db   = init_db();
+
+  // $req = getFavoriteByMedia($user_id, $media_id);
+
+  $req = $db->prepare("SELECT * FROM favorites WHERE user_id = :user_id AND media_id = :media_id");
+  $req->execute( array( 
+    'user_id' => $user_id,
+    'media_id' => $media_id
+  ));
+
+  // If the user has not this media in favorite yet, add it to the list.
+  if( $req->rowCount() <= 0 )
+  {
+    $req = $db->prepare("INSERT INTO favorites (user_id, media_id) VALUES (:user_id, :media_id)");
+    $req->execute( array( 
+      'user_id' => $user_id,
+      'media_id' => $media_id
+    ));
+  }
+  else // Else, delete this media from the favorite list.
+  {
+    $req = $db->prepare("DELETE FROM favorites WHERE user_id = :user_id AND media_id = :media_id");
+    $req->execute( array( 
+      'user_id' => $user_id,
+      'media_id' => $media_id
+    ));
+  }
+
+  // Close databse connection
+  $db   = null;
+}
+
+public static function deleteFavorite($user_id){
+  // Open database connection
+  $db   = init_db();
+
+  $req = $db->prepare("DELETE FROM favorites WHERE user_id = ?");
+  $req->execute( array( $user_id ));
+
+  // Close databse connection
+  $db   = null;
+}
 
 }

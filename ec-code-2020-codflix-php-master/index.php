@@ -7,6 +7,7 @@ require_once( 'controller/mediaController.php' );
 require_once( 'controller/contactController.php' );
 require_once( 'controller/profileController.php');
 require_once( 'controller/historyController.php');
+require_once( 'controller/favoriteController.php' );
 
 
 /**************************
@@ -32,6 +33,12 @@ if ( isset( $_GET['action'] ) ):
       signupPage();
 
     break;
+    case 'favorie':
+
+      favorite();
+
+    break;
+
 
     case 'history':
 

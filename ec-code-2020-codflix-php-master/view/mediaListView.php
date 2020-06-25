@@ -16,7 +16,6 @@
 <div class="media-list" name="media">
     <?php 
     foreach( $medias as $media ):?>
-    <?php  echo $media['typeof'] ?>
         <a class="item" href="index.php?media=<?=$media['id'];?>&typeof=<?= $media['typeof']; ?> ">
         <input type="hidden" value="<?= $media['typeof']; ?>">
 
